@@ -13,10 +13,13 @@ namespace WcfReceipt
     public interface IService1
     {
         [OperationContract]
-        List<string> GetAllArticles();
+        void AddNewReciept(List<string> reciept);
 
         [OperationContract]
-        void AddNewArticle(string name, string price, string amount);
+        List<Article> GetAllArticles();
+
+        [OperationContract]
+        void AddNewArticle(Article article);
 
         [OperationContract]
         string GetData(int value);

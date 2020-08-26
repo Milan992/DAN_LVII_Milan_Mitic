@@ -13,26 +13,52 @@ namespace WcfReceipt
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
-        public void AddNewArticle(string name, string price, string amount)
+        static int counter = 0;
+
+        public void AddNewReciept(List<string> reciept)
         {
-            Directory.CreateDirectory(@"c:\RecieptApp\");
-            using (StreamWriter sw = new StreamWriter(@"c:\RecieptApp\Articles.txt", true))
+            string location = AppDomain.CurrentDomain.BaseDirectory + "/Reciept_" + counter++ + "_"+DateTime.Now.ToString() + ".txt";
+
+            using (StreamWriter sw = new StreamWriter(location, true))
             {
-                sw.WriteLine("Name: {0}, Price: {1}, Amount: {2}", name, price, amount);
+                foreach (var item in reciept)
+                {
+                    sw.WriteLine(item);
+                }
             }
         }
 
-        public List<string> GetAllArticles()
+        public void AddNewArticle(Article article)
         {
-            List<string> articles = new List<string>();
+            string location = AppDomain.CurrentDomain.BaseDirectory + "/Articles.txt";
 
-            using (StreamReader sr = new StreamReader(@"..\..\Articles.txt"))
+            using (StreamWriter sw = new StreamWriter(location, true))
             {
-                string line;
-                while ((line = sr.ReadLine()) != null)
+                sw.WriteLine("Name: {0}, Price: {1}, Amount: {2}", article.Name, article.Price, article.Amount);
+            }
+        }
+
+        public List<Article> GetAllArticles()
+        {
+            List<Article> articles = new List<Article>();
+            try
+            {
+                string location = AppDomain.CurrentDomain.BaseDirectory + "/Articles.txt";
+
+                using (StreamReader sr = new StreamReader(location))
                 {
-                    articles.Add(line);
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] array = line.Split(',');
+                        Article a = new Article(array[0], Convert.ToInt32(array[1]), Convert.ToInt32(array[2]));
+                        articles.Add(a);
+                    }
                 }
+            }
+            catch
+            {
+                articles = null;
             }
             return articles;
         }

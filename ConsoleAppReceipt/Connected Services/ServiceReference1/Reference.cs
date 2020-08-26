@@ -8,87 +8,33 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using WcfReceipt;
+
 namespace ConsoleAppReceipt.ServiceReference1 {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/WcfReceipt")]
-    [System.SerializableAttribute()]
-    public partial class CompositeType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool BoolValueField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StringValueField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool BoolValue {
-            get {
-                return this.BoolValueField;
-            }
-            set {
-                if ((this.BoolValueField.Equals(value) != true)) {
-                    this.BoolValueField = value;
-                    this.RaisePropertyChanged("BoolValue");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StringValue {
-            get {
-                return this.StringValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StringValueField, value) != true)) {
-                    this.StringValueField = value;
-                    this.RaisePropertyChanged("StringValue");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllArticles", ReplyAction="http://tempuri.org/IService1/GetAllArticlesResponse")]
-        string[] GetAllArticles();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNewReciept", ReplyAction="http://tempuri.org/IService1/AddNewRecieptResponse")]
+        void AddNewReciept(List<string> reciept);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNewReciept", ReplyAction="http://tempuri.org/IService1/AddNewRecieptResponse")]
+        System.Threading.Tasks.Task AddNewRecieptAsync(string[] reciept);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllArticles", ReplyAction="http://tempuri.org/IService1/GetAllArticlesResponse")]
-        System.Threading.Tasks.Task<string[]> GetAllArticlesAsync();
+        List<Article> GetAllArticles();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllArticles", ReplyAction="http://tempuri.org/IService1/GetAllArticlesResponse")]
+        System.Threading.Tasks.Task<WcfReceipt.Article[]> GetAllArticlesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNewArticle", ReplyAction="http://tempuri.org/IService1/AddNewArticleResponse")]
-        void AddNewArticle(string name, string price, string amount);
+        void AddNewArticle(WcfReceipt.Article article);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNewArticle", ReplyAction="http://tempuri.org/IService1/AddNewArticleResponse")]
-        System.Threading.Tasks.Task AddNewArticleAsync(string name, string price, string amount);
+        System.Threading.Tasks.Task AddNewArticleAsync(WcfReceipt.Article article);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetData", ReplyAction="http://tempuri.org/IService1/GetDataResponse")]
         string GetData(int value);
@@ -97,10 +43,10 @@ namespace ConsoleAppReceipt.ServiceReference1 {
         System.Threading.Tasks.Task<string> GetDataAsync(int value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService1/GetDataUsingDataContractResponse")]
-        ConsoleAppReceipt.ServiceReference1.CompositeType GetDataUsingDataContract(ConsoleAppReceipt.ServiceReference1.CompositeType composite);
+        WcfReceipt.CompositeType GetDataUsingDataContract(WcfReceipt.CompositeType composite);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService1/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<ConsoleAppReceipt.ServiceReference1.CompositeType> GetDataUsingDataContractAsync(ConsoleAppReceipt.ServiceReference1.CompositeType composite);
+        System.Threading.Tasks.Task<WcfReceipt.CompositeType> GetDataUsingDataContractAsync(WcfReceipt.CompositeType composite);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -130,20 +76,28 @@ namespace ConsoleAppReceipt.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public string[] GetAllArticles() {
+        public void AddNewReciept(List<string> reciept) {
+            base.Channel.AddNewReciept(reciept);
+        }
+        
+        public System.Threading.Tasks.Task AddNewRecieptAsync(string[] reciept) {
+            return base.Channel.AddNewRecieptAsync(reciept);
+        }
+        
+        public List<Article> GetAllArticles() {
             return base.Channel.GetAllArticles();
         }
         
-        public System.Threading.Tasks.Task<string[]> GetAllArticlesAsync() {
+        public System.Threading.Tasks.Task<WcfReceipt.Article[]> GetAllArticlesAsync() {
             return base.Channel.GetAllArticlesAsync();
         }
         
-        public void AddNewArticle(string name, string price, string amount) {
-            base.Channel.AddNewArticle(name, price, amount);
+        public void AddNewArticle(WcfReceipt.Article article) {
+            base.Channel.AddNewArticle(article);
         }
         
-        public System.Threading.Tasks.Task AddNewArticleAsync(string name, string price, string amount) {
-            return base.Channel.AddNewArticleAsync(name, price, amount);
+        public System.Threading.Tasks.Task AddNewArticleAsync(WcfReceipt.Article article) {
+            return base.Channel.AddNewArticleAsync(article);
         }
         
         public string GetData(int value) {
@@ -154,11 +108,11 @@ namespace ConsoleAppReceipt.ServiceReference1 {
             return base.Channel.GetDataAsync(value);
         }
         
-        public ConsoleAppReceipt.ServiceReference1.CompositeType GetDataUsingDataContract(ConsoleAppReceipt.ServiceReference1.CompositeType composite) {
+        public WcfReceipt.CompositeType GetDataUsingDataContract(WcfReceipt.CompositeType composite) {
             return base.Channel.GetDataUsingDataContract(composite);
         }
         
-        public System.Threading.Tasks.Task<ConsoleAppReceipt.ServiceReference1.CompositeType> GetDataUsingDataContractAsync(ConsoleAppReceipt.ServiceReference1.CompositeType composite) {
+        public System.Threading.Tasks.Task<WcfReceipt.CompositeType> GetDataUsingDataContractAsync(WcfReceipt.CompositeType composite) {
             return base.Channel.GetDataUsingDataContractAsync(composite);
         }
     }

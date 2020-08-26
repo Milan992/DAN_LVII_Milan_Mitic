@@ -54,9 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\ServiceReference1\ConsoleAppReceipt.ServiceReference1.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\ServiceReference1\Service1.wsdl" />
     <None Include="Connected Services\ServiceReference1\Service1.xsd">
       <SubType>Designer</SubType>
@@ -70,6 +67,14 @@
     <None Include="Connected Services\ServiceReference1\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\WcfReceipt.Article.datasource" />
+    <None Include="Properties\DataSources\WcfReceipt.CompositeType.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAN_LVII_Milan_Mitic\WcfReceipt\WcfReceipt.csproj">
+      <Project>{FDB162B9-8BA0-4294-9DFE-D4A5381CFE9D}</Project>
+      <Name>WcfReceipt</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

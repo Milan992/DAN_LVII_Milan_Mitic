@@ -1,9 +1,11 @@
 ﻿using ConsoleAppReceipt.ServiceReference1;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WcfReceipt;
 
 namespace ConsoleAppReceipt
 {
@@ -24,7 +26,42 @@ namespace ConsoleAppReceipt
                 switch (option)
                 {
                     case "1":
-
+                        List<Article> articles = service.GetAllArticles();
+                        List<string> reciept = new List<string>();
+                        while (true)
+                        {
+                            int i = 1;
+                            Console.WriteLine("Press '#' when you want to finish shopping.\nPlease choose one of the following articles:");
+                            Console.WriteLine(String.Join("\n{0}", i++, service.GetAllArticles()));
+                            string chosen = Console.ReadLine();
+                            if (chosen == "#")
+                            {
+                                service.AddNewReciept(reciept);
+                                break;
+                            }
+                            string amountBought = "";
+                            int amountBoughti;
+                            while (int.TryParse(amountBought, out amountBoughti))
+                            {
+                                Console.WriteLine("Amount:"); amountBought = Console.ReadLine();
+                            }
+                            try
+                            {
+                                articles[Convert.ToInt32(chosen) - 1].Amount -= amountBoughti;
+                                if (articles[Convert.ToInt32(chosen) - 1].Amount >= 0)
+                                {
+                                    reciept.Add(articles[Convert.ToInt32(chosen) - 1].ToString() + "amount bought: " + amountBought);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Article amount can not be less then 0.");
+                                }
+                            }
+                            catch
+                            {
+                                Console.WriteLine("There is no article with number {0}", chosen);
+                            }
+                        }
                         break;
 
                     case "2":
@@ -52,12 +89,15 @@ namespace ConsoleAppReceipt
                             Console.WriteLine("\nEnter article amount:");
                             amount = Console.ReadLine();
                         }
-                        service.AddNewArticle(name, price, amount);
+                        Article article = new Article(name, Convert.ToInt32(price), Convert.ToInt32(amount));
+                        service.AddNewArticle(article);
                         break;
 
 
                     case "4":
+                        Console.WriteLine("\n\tArticles:\n");
                         Console.WriteLine(String.Join("\n", service.GetAllArticles()));
+                        Console.WriteLine("\n");
                         break;
 
 
