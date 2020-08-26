@@ -12,14 +12,17 @@ namespace WcfReceipt
     [ServiceContract]
     public interface IService1
     {
+        [OperationContract]
+        List<string> GetAllArticles();
+
+        [OperationContract]
+        void AddNewArticle(string name, string price, string amount);
 
         [OperationContract]
         string GetData(int value);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
-
-        // TODO: Add your service operations here
     }
 
 
