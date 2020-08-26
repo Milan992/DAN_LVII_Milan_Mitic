@@ -15,7 +15,8 @@ namespace WcfReceipt
     {
         public void AddNewArticle(string name, string price, string amount)
         {
-            using (StreamWriter sw = new StreamWriter(@"Articles.txt", true))
+            Directory.CreateDirectory(@"c:\RecieptApp\");
+            using (StreamWriter sw = new StreamWriter(@"c:\RecieptApp\Articles.txt", true))
             {
                 sw.WriteLine("Name: {0}, Price: {1}, Amount: {2}", name, price, amount);
             }
