@@ -17,7 +17,7 @@ namespace WcfReceipt
 
         public void AddNewReciept(List<string> reciept)
         {
-            string location = AppDomain.CurrentDomain.BaseDirectory + "/Reciept_" + counter++ + "_"+DateTime.Now.ToString() + ".txt";
+            string location = AppDomain.CurrentDomain.BaseDirectory + "/Reciept_" + counter++ +"_"+ DateTime.Now.Millisecond.ToString() + ".txt";
 
             using (StreamWriter sw = new StreamWriter(location, true))
             {
@@ -34,7 +34,7 @@ namespace WcfReceipt
 
             using (StreamWriter sw = new StreamWriter(location, true))
             {
-                sw.WriteLine("Name: {0}, Price: {1}, Amount: {2}", article.Name, article.Price, article.Amount);
+                sw.WriteLine("Name:{0}, Price:{1}, Amount:{2}", article.Name, article.Price, article.Amount);
             }
         }
 
@@ -50,15 +50,16 @@ namespace WcfReceipt
                     string line;
                     while ((line = sr.ReadLine()) != null)
                     {
-                        string[] array = line.Split(',');
-                        Article a = new Article(array[0], Convert.ToInt32(array[1]), Convert.ToInt32(array[2]));
+                        string[] array = line.Split(':', ',');
+                        Article a = new Article(array[1], Convert.ToInt32(array[3]), Convert.ToInt32(array[5]));
                         articles.Add(a);
                     }
                 }
             }
             catch
             {
-                articles = null;
+                Article a = new Article();
+                articles.Add(a);
             }
             return articles;
         }
@@ -71,6 +72,16 @@ namespace WcfReceipt
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {
             throw new NotImplementedException();
+        }
+
+        public void ClearFile()
+        {
+            string location = AppDomain.CurrentDomain.BaseDirectory + "/Articles.txt";
+
+            using (StreamWriter sw = new StreamWriter(location, false))
+            {
+                sw.Write("");
+            }
         }
     }
 }

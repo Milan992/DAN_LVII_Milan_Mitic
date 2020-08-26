@@ -31,8 +31,11 @@ namespace ConsoleAppReceipt
                         while (true)
                         {
                             int i = 1;
-                            Console.WriteLine("Press '#' when you want to finish shopping.\nPlease choose one of the following articles:");
-                            Console.WriteLine(String.Join("\n{0}", i++, service.GetAllArticles()));
+                            Console.WriteLine("\nPress '#' when you want to finish shopping.\nPlease choose one of the following articles:");
+                            foreach (var item in articles)
+                            {
+                                Console.WriteLine(i++ + "." + item.ToString());
+                            }
                             string chosen = Console.ReadLine();
                             if (chosen == "#")
                             {
@@ -41,16 +44,16 @@ namespace ConsoleAppReceipt
                             }
                             string amountBought = "";
                             int amountBoughti;
-                            while (int.TryParse(amountBought, out amountBoughti))
+                            while (!int.TryParse(amountBought, out amountBoughti))
                             {
                                 Console.WriteLine("Amount:"); amountBought = Console.ReadLine();
                             }
                             try
                             {
-                                articles[Convert.ToInt32(chosen) - 1].Amount -= amountBoughti;
-                                if (articles[Convert.ToInt32(chosen) - 1].Amount >= 0)
+                                if (articles[Convert.ToInt32(chosen) - 1].Amount - amountBoughti >= 0)
                                 {
-                                    reciept.Add(articles[Convert.ToInt32(chosen) - 1].ToString() + "amount bought: " + amountBought);
+                                    articles[Convert.ToInt32(chosen) - 1].Amount -= amountBoughti;
+                                    reciept.Add(articles[Convert.ToInt32(chosen) - 1].ToString() + " amount bought: " + amountBought);
                                 }
                                 else
                                 {
@@ -61,6 +64,13 @@ namespace ConsoleAppReceipt
                             {
                                 Console.WriteLine("There is no article with number {0}", chosen);
                             }
+                        }
+                        Console.WriteLine("\nYour reciept:");
+                        Console.WriteLine(string.Join("\n", reciept));
+                        service.ClearFile();
+                        foreach (var item in articles)
+                        {
+                            service.AddNewArticle(item);
                         }
                         break;
 
@@ -114,7 +124,7 @@ namespace ConsoleAppReceipt
 
         public static void ViewMenu()
         {
-            Console.WriteLine("1. Make a purchase");
+            Console.WriteLine("\n1. Make a purchase");
             Console.WriteLine("2. Update an article");
             Console.WriteLine("3. Add an article");
             Console.WriteLine("4. View all articles");

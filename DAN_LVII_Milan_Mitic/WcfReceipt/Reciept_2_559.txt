@@ -1,0 +1,2 @@
+ art2, 312, 0 amount bought: 3124
+ neki, 32, 22 amount bought: 1

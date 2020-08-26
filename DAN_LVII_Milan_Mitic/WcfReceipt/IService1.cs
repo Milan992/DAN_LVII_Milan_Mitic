@@ -13,6 +13,9 @@ namespace WcfReceipt
     public interface IService1
     {
         [OperationContract]
+        void ClearFile();
+
+        [OperationContract]
         void AddNewReciept(List<string> reciept);
 
         [OperationContract]

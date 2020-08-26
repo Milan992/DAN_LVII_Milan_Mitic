@@ -18,17 +18,23 @@ namespace ConsoleAppReceipt.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ClearFile", ReplyAction="http://tempuri.org/IService1/ClearFileResponse")]
+        void ClearFile();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ClearFile", ReplyAction="http://tempuri.org/IService1/ClearFileResponse")]
+        System.Threading.Tasks.Task ClearFileAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNewReciept", ReplyAction="http://tempuri.org/IService1/AddNewRecieptResponse")]
         void AddNewReciept(List<string> reciept);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNewReciept", ReplyAction="http://tempuri.org/IService1/AddNewRecieptResponse")]
-        System.Threading.Tasks.Task AddNewRecieptAsync(string[] reciept);
+        System.Threading.Tasks.Task AddNewRecieptAsync(List<string> reciept);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllArticles", ReplyAction="http://tempuri.org/IService1/GetAllArticlesResponse")]
         List<Article> GetAllArticles();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllArticles", ReplyAction="http://tempuri.org/IService1/GetAllArticlesResponse")]
-        System.Threading.Tasks.Task<WcfReceipt.Article[]> GetAllArticlesAsync();
+        System.Threading.Tasks.Task<List<Article>> GetAllArticlesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNewArticle", ReplyAction="http://tempuri.org/IService1/AddNewArticleResponse")]
         void AddNewArticle(WcfReceipt.Article article);
@@ -76,11 +82,19 @@ namespace ConsoleAppReceipt.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
+        public void ClearFile() {
+            base.Channel.ClearFile();
+        }
+        
+        public System.Threading.Tasks.Task ClearFileAsync() {
+            return base.Channel.ClearFileAsync();
+        }
+        
         public void AddNewReciept(List<string> reciept) {
             base.Channel.AddNewReciept(reciept);
         }
         
-        public System.Threading.Tasks.Task AddNewRecieptAsync(string[] reciept) {
+        public System.Threading.Tasks.Task AddNewRecieptAsync(List<string> reciept) {
             return base.Channel.AddNewRecieptAsync(reciept);
         }
         
@@ -88,7 +102,7 @@ namespace ConsoleAppReceipt.ServiceReference1 {
             return base.Channel.GetAllArticles();
         }
         
-        public System.Threading.Tasks.Task<WcfReceipt.Article[]> GetAllArticlesAsync() {
+        public System.Threading.Tasks.Task<List<Article>> GetAllArticlesAsync() {
             return base.Channel.GetAllArticlesAsync();
         }
         

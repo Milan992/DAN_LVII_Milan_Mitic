@@ -1,2 +1,5 @@
-Name: neki, Price: 32, Amount: 23
-Name: fdsa, Price: 312, Amount: 3213
+Name:    da, Price:1, Amount:-1
+Name:    adsfa, Price:2, Amount:213
+Name:  nov, Price:40, Amount:31
+Name: e, Price:2, Amount:0
+Name:nov, Price:1, Amount:0
