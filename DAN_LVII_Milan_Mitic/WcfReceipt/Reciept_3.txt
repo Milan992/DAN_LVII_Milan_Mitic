@@ -1,2 +1,0 @@
- fdsa, 312, 3201 amount bought: 12
- art, 32, 300 amount bought: 21

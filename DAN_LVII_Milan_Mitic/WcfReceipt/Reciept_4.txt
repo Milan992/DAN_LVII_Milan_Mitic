@@ -1,1 +1,0 @@
- neki, 32, 20 amount bought: 3

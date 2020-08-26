@@ -1,5 +1,1 @@
-Name:    da, Price:1, Amount:-1
-Name:    adsfa, Price:2, Amount:213
-Name:  nov, Price:40, Amount:31
-Name: e, Price:2, Amount:0
-Name:nov, Price:1, Amount:0
+Name:artikal, Price:100, Amount:900
