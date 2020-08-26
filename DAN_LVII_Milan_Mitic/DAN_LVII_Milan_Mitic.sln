@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfReceipt", "WcfReceipt\WcfReceipt.csproj", "{FDB162B9-8BA0-4294-9DFE-D4A5381CFE9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppReceipt", "..\ConsoleAppReceipt\ConsoleAppReceipt.csproj", "{460ED8A7-E550-458B-A85B-7AAD068D0749}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FDB162B9-8BA0-4294-9DFE-D4A5381CFE9D} = {FDB162B9-8BA0-4294-9DFE-D4A5381CFE9D}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDB162B9-8BA0-4294-9DFE-D4A5381CFE9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB162B9-8BA0-4294-9DFE-D4A5381CFE9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB162B9-8BA0-4294-9DFE-D4A5381CFE9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB162B9-8BA0-4294-9DFE-D4A5381CFE9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{460ED8A7-E550-458B-A85B-7AAD068D0749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{460ED8A7-E550-458B-A85B-7AAD068D0749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{460ED8A7-E550-458B-A85B-7AAD068D0749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{460ED8A7-E550-458B-A85B-7AAD068D0749}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09B32504-D937-4AAD-90E4-32A2C1861691}
+	EndGlobalSection
+EndGlobal
