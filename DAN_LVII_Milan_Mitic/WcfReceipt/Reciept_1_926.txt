@@ -1,3 +1,0 @@
- artikal, 49, 486 amount bought: 4
- novi art, 32, 318 amount bought: 3
- artikal, 49, 481 amount bought: 5

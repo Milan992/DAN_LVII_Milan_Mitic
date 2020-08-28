@@ -53,7 +53,7 @@ namespace ConsoleAppReceipt
                                 if (articles[Convert.ToInt32(chosen) - 1].Amount - amountBoughti >= 0)
                                 {
                                     articles[Convert.ToInt32(chosen) - 1].Amount -= amountBoughti;
-                                    reciept.Add(articles[Convert.ToInt32(chosen) - 1].ToString() + " amount bought: " + amountBought);
+                                    reciept.Add(articles[Convert.ToInt32(chosen) - 1].ToString() + " amount bought: " + amountBought + " price: " + amountBoughti * articles[Convert.ToInt32(chosen) - 1].Price);
                                 }
                                 else
                                 {
