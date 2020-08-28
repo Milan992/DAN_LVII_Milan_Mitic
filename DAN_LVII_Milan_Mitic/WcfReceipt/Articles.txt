@@ -1,0 +1,1 @@
+Name:artikal, Price:100, Amount:800
